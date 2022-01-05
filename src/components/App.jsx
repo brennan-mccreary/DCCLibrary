@@ -15,6 +15,32 @@ class App extends Component {
         };
     }
 
+    goToNextBook = () => {
+        let tempBookNumber = this.state.bookNumber;
+        tempBookNumber ++;
+        
+        if(tempBookNumber === this.books.length) {
+            tempBookNumber = 0;
+        }
+
+        this.setState(
+            {bookNumber: tempBookNumber}
+        );
+    }
+
+    goToPreviousBook = () => {
+        let tempBookNumber = this.state.bookNumber;
+        tempBookNumber --;
+        
+        if(tempBookNumber < 0) {
+            tempBookNumber = (this.books.length - 1);
+        }
+
+        this.setState(
+            {bookNumber: tempBookNumber}
+        );
+    }
+
     render() {
         return (
             <div className="container-fluid">
@@ -22,6 +48,7 @@ class App extends Component {
                 <div className="row">
                     <div className="col-md-4">
                         {/*Previous button*/}
+                        <button onClick={this.goToPreviousBook}>Previous Book</button>
                     </div>
                     <div className="col-md-4">
                         {/*Display Book*/}
@@ -30,6 +57,7 @@ class App extends Component {
                     </div>
                     <div className="col-md-4">
                         {/*Next button*/}
+                        <button onClick={this.goToNextBook}>Next Book</button>
                     </div>
                 </div>
             </div>
